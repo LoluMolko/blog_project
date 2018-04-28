@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(articles_params)
     @article.save
 
-    redirect_to articles_path
+    redirect_to article_path(@article)
   end
 
   def show

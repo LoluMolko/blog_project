@@ -1,5 +1,5 @@
 <h1>List of articles</h1>
-
+<h2><%= link_to 'New article', new_article_path %></h2>
 <table>
   <tr>
     <td>Id</td>
@@ -11,6 +11,8 @@
     <td><%= article.id %></td>
     <td><%= article.title %></td>
     <td><%= article.text %></td>
+    <td><%= link_to 'Show', article_path(article) %></td>
   </tr>
   <% end %>
 </table>
+<h2><%= link_to 'New article', new_article_path %></h2>
