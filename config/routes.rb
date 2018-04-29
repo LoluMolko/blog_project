@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'welcome#index'
-  resources :articles
-  resources :comments
+  resources :articles do
+    resources :comments
+  end
+end
 
   #CRUD = create, read, update, delete
 
@@ -14,4 +16,3 @@ Rails.application.routes.draw do
   # patch 'articles/:id', to: 'articles#update'
   # delete 'articles/:id', to: 'articles#destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-end
