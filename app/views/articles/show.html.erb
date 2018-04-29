@@ -15,31 +15,10 @@
   <%= @article.updated_at %>
 </p>
 
-<%= form_for(@article.comments.build) do |f| %>
-<%= f.hidden_field :article_id  %>
-  <p>
-    <%= f.label :commenter %>
-    <%= f.text_field :commenter %>
-  </p>
-  <p>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<%= render 'comments/form' %>
 
 <h2>Comments</h2>
-<% @article.comments.reload.each do |comments| %>
-  <p>
-  <strong>Commenter:</strong>
-  <%= comments.commenter %>
-  </p>
-  <p>
-  <%= comments.body %>
-  </p>
-<% end %>
+<%= render @article.comments.reload %>
 
 <p><%= link_to 'Back', articles_path %></p>
 <p><%= link_to 'Edit', edit_article_path(@article) %></p>
