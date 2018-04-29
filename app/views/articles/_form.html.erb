@@ -1,14 +1,15 @@
 <%= render 'shared/errors', model: @article %>
 
 <%= form_for @article do |f| %>
-  <p>
+  <div class='form-group'>
     <%= f.label :label %><br>
-    <%= f.text_field :title %> </p>
-  <p>
+    <%= f.text_field :title, class: 'form-control', placeholder: 'Title' %>
+  </div>
+  <div class='form-group'>
     <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </p>
+    <%= f.text_area :text, class: 'form-control', placeholder: 'Text' %>
+  </div>
   <p>
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-default" %>
   </p>
 <% end %>
