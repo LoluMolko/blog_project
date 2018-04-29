@@ -1,11 +1,4 @@
-<% if @comment.errors.any? %>
-  <h2>Errors!</h2>
-  <ul>
-    <% @comment.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render 'shared/errors', model: @comment %>
 
 <%= form_for([@article, @comment]) do |f| %>
   <p>

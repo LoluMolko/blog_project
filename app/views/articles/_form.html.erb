@@ -1,11 +1,5 @@
-<% if @article.errors.any? %>
-  <h2>Errors!</h2>
-  <ul>
-    <% @article.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render 'shared/errors', model: @article %>
+
 <%= form_for @article do |f| %>
   <p>
     <%= f.label :label %><br>
