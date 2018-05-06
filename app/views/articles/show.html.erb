@@ -1,9 +1,7 @@
 <p>
-  <strong>Title:</strong>
-  <%= @article.title %>
+  <h1><%= @article.title %></h1>
 </p>
-<p>
-  <strong>Text:</strong>
+<p class="lead">
   <%= @article.text %>
 </p>
 <p>
@@ -20,5 +18,5 @@
 <h2>Comments</h2>
 <%= render @article.comments.reload %>
 
-<p><%= link_to 'Back', articles_path %></p>
-<p><%= link_to 'Edit', edit_article_path(@article) %></p>
+<p><%= link_to 'Back to index', articles_path, class: "btn btn-info" %></p>
+<p><%= link_to 'Edit article', edit_article_path(@article), class: "btn btn-warning" %></p>

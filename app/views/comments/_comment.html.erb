@@ -1,12 +1,18 @@
-<p>
-<strong>Commenter:</strong>
-<%= comment.commenter %>
-</p>
-<p>
-<%= comment.body %>
-</p>
-<p>
-<%= link_to 'Delete', article_comment_path(comment.article, comment),
-        method: :delete,
-        data: { confirm: 'Are you sure?' } %>
-</p>
+<table class="table", style="width:50%">
+<h4>
+<thead>
+  <tr>
+    <th><h5>Commenter:  <%= comment.commenter %></h5></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><p><%= comment.body %></p>
+      <%= link_to 'Delete comment', article_comment_path(comment.article, comment),
+              method: :delete,
+              data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    </td>
+  </tr>
+  <tr><td></td></tr>
+</tbody>
+</table>
