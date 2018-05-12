@@ -2,6 +2,9 @@
   <h1><%= @article.title %></h1>
 </p>
 <p>
+  <h4>Written by: <%= @article.author.email %></h4>
+</p>
+<p>
   <strong>Tags:</strong>
   <% @article.tags.each do |tag| %>
     <%= link_to articles_path(q: tag), style: 'margin-left: 4px' do %>
