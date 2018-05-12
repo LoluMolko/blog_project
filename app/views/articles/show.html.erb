@@ -1,6 +1,9 @@
 <p>
   <h1><%= @article.title %></h1>
 </p>
+<p>
+  <h4>Tags: <%= @article.tags.join(", ") %> </h1>
+</p>
 <p class="lead">
   <%= @article.text %>
 </p>
