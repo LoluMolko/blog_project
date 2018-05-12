@@ -1,8 +1,16 @@
+require 'pry'
 class ArticlesController < ApplicationController
   before_action :find_article, only: [:show, :update, :edit, :destroy]
 
   def index
-    @articles = Article.all
+    #binding.pry
+    if params[:q].present?
+      @articles = Article.all.select do |article|
+        article.tags.include?(params[:q])
+      end
+    else
+      @articles = Article.all
+    end
   end
 
   def new
