@@ -1,20 +1,20 @@
 require 'pry'
 class ArticlesController < ApplicationController
-  before_action :find_article, only: [:show, :update, :edit, :destroy]
+  before_action :find_article, only: %i[show update edit destroy]
 
   def index
     @articles = Article.all
-    @articles = Article.where("? = any(tags)", params[:q].downcase) if params[:q].present?
+    @articles = Article.where('? = any(tags)', params[:q].downcase) if params[:q].present?
 
-    #binding.pry
-    #tutaj przeiterowujemy sie przez wszystko co zawiera sie w Article.all
-    #if params[:q].present?
-      #@articles = Article.all.select do |article|
-      #  article.tags.include?(params[:q])
-    #  end
-    #else
-      #@articles = Article.all
-    #end
+    # binding.pry
+    # przeiterowujemy sie przez wszystko w articles
+    # if params[:q].present?
+    # @articles = Article.all.select do |article|
+    # article.tags.include?(params[:q])
+    # end
+    # else
+    # @articles = Article.all
+    # end
   end
 
   def new
@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.author = current_user
     if @article.save
-      flash[:notice] = "Your article has been saved"
+      flash[:notice] = 'Your article has been saved'
       redirect_to article_path(@article)
     else
       render 'new'
@@ -37,13 +37,12 @@ class ArticlesController < ApplicationController
     @comment = @article.comments.build(commenter: session[:commenter])
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     article_params
     if @article.update(article_params)
-      flash[:notice] = "Your article has been updated"
+      flash[:notice] = 'Your article has been updated'
       redirect_to article_path(@article)
     else
       render 'edit'
@@ -52,7 +51,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    flash[:notice] = "Your article has been deleted"
+    flash[:notice] = 'Your article has been deleted'
     redirect_to articles_path
   end
 
