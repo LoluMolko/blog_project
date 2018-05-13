@@ -36,6 +36,7 @@ class ArticlesController < ApplicationController
 
   def show
     @comment = @article.comments.build(commenter: session[:commenter])
+    @like = Like.find_or_initialize_by(article: @article, user: current_user)
   end
 
   def edit; end

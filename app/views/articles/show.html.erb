@@ -26,6 +26,19 @@
   <%= @article.updated_at %>
 </p>
 
+<% if @like.persisted? %>
+  <%= link_to 'Unlike', article_like_path(@article, @like), method: :delete %>
+  <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+<% else %>
+  <%= link_to 'Like', article_likes_path(@article), method: :post %>
+  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+  <!-- Post method creates a submit form -->
+<% end %>
+
+<p>
+<%= pluralize(@article.likes.count, "person") %> liked this article
+</p>
+
 <%= render 'comments/form' %>
 
 <h2>Comments</h2>
