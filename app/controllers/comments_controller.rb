@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.build(comment_params)
+    @like = Like.find_or_initialize_by(article: @article, user: current_user)
+
     if @comment.save
       session[:commenter] = @comment.commenter
       flash[:notice] = 'Your comment has been saved'
