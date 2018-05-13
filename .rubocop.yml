@@ -20,3 +20,5 @@ Style/MultilineIfModifier:
   Enabled: false
 Metrics/LineLength:
   Max: 120
+Style/GuardClause:
+  Enabled: false
