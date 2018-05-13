@@ -5,6 +5,11 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy]
     resources :likes, only: %i[create destroy]
   end
+
+  namespace :admin do
+    root 'articles#index'
+    resources :articles, :comments
+  end
 end
 
 # CRUD = create, read, update, delete
