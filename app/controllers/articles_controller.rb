@@ -21,7 +21,6 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    article_params
     @article = Article.new(permitted_attributes(Article))
     # permitted_attributes zawsze wymaga argumentu
     @article.author = current_user
