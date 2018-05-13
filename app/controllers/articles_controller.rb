@@ -1,4 +1,3 @@
-require 'pry'
 class ArticlesController < ApplicationController
   before_action :find_article, only: %i[show update edit destroy]
   before_action :authorize_article, only: %i[edit update destroy]
@@ -7,7 +6,6 @@ class ArticlesController < ApplicationController
     @articles = Article.page(params[:page]).per(3)
     @articles = @articles.where('? = any(tags)', params[:q].downcase) if params[:q].present?
 
-    # binding.pry
     # przeiterowujemy sie przez wszystko w articles
     # if params[:q].present?
     # @articles = Article.all.select do |article|
