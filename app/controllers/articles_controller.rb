@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :authorize_article, only: %i[edit update destroy]
 
   def index
-    @articles = Article.all
+    @articles = Article.page(params[:page]).per(3)
     @articles = Article.where('? = any(tags)', params[:q].downcase) if params[:q].present?
 
     # binding.pry
