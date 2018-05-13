@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.page(params[:page]).per(3)
-    @articles = Article.where('? = any(tags)', params[:q].downcase) if params[:q].present?
+    @articles = @articles.where('? = any(tags)', params[:q].downcase) if params[:q].present?
 
     # binding.pry
     # przeiterowujemy sie przez wszystko w articles
@@ -24,7 +24,8 @@ class ArticlesController < ApplicationController
 
   def create
     article_params
-    @article = Article.new(article_params)
+    @article = Article.new(permitted_attributes(Article))
+    # permitted_attributes zawsze wymaga argumentu
     @article.author = current_user
     if @article.save
       flash[:notice] = 'Your article has been saved'
@@ -42,7 +43,7 @@ class ArticlesController < ApplicationController
   def edit; end
 
   def update
-    if @article.update(article_params)
+    if @article.update(permitted_attributes(@article))
       flash[:notice] = 'Your article has been updated'
       redirect_to article_path(@article)
     else
@@ -58,18 +59,19 @@ class ArticlesController < ApplicationController
 
   private
 
-  def article_params
-    params.require(:article).permit(:title, :tags, :text, :likes)
-  end
+  # def article_params
+  #  params.require(:article).permit(:title, :tags, :text, :likes)
+  # end
 
   def find_article
     @article = Article.find(params[:id])
   end
 
   def authorize_article
-    if @article.author != current_user
-      flash[:alert] = 'This is not your article'
-      redirect_to articles_path
-    end
+    authorize @article
+      # if @article.author != current_user
+      #  flash[:alert] = 'This is not your article'
+      #  redirect_to articles_path
+      #end
   end
 end
