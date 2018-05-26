@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :authorize_article, only: %i[edit update destroy]
 
   def index
-    @articles = Article.page(params[:page]).per(3)
+    @articles = Article.page(params[:page]).per(3).order("id desc")
     @articles = @articles.where('? = any(tags)', params[:q].downcase) if params[:q].present?
 
     # przeiterowujemy sie przez wszystko w articles
