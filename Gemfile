@@ -38,6 +38,8 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'devise'
 gem 'kaminari'
 gem 'pundit'
+gem 'carrierwave'
+gem 'cloudinary'
 
 group :development, :test do
   # Call 'byebug' to stop execution and get a debugger console
