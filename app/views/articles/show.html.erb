@@ -42,6 +42,8 @@
 <%= pluralize(@article.likes.count, "person") %> liked this article
 </p>
 
+<%= link_to 'Likes summary', likes_summary_article_path(@article) %>
+
 <%= render 'comments/form' %>
 
 <h2>Comments</h2>

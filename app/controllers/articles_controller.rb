@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :find_article, only: %i[show update edit destroy]
+  before_action :find_article, only: %i[show update edit destroy likes_summary]
   before_action :authorize_article, only: %i[edit update destroy]
 
   def index
@@ -65,6 +65,9 @@ class ArticlesController < ApplicationController
     @article.destroy
     flash[:notice] = 'Your article has been deleted'
     redirect_to articles_path
+  end
+
+  def likes_summary
   end
 
   private

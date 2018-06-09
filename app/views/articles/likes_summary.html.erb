@@ -1,0 +1,7 @@
+<h1>Likes summary</h1>
+
+<ul>
+<% @article.likes.each do |like| %>
+  <li>User <%= like.user.email %> liked this article at <%= like.created_at %></li>
+<% end %>
+</ul>
