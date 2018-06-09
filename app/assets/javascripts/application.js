@@ -29,4 +29,19 @@ window.addEventListener("load", function() {
       }
     });
   }
+
+  var summaryElements = document.querySelectorAll('.summary');
+  for (var i = 0; i < summaryElements.length - 1; i++){
+    summaryElements[i].addEventListener('click', function(e){
+      e.preventDefault();
+        var request = new XMLHttpRequest();
+        request.open("GET", this.href);
+        request.responseType = 'json';
+        request.addEventListener("load", function () {
+          var summary = document.getElementById('summary-' + this.response.id)
+            summary.innerText = 'Comments: ' + this.response.comments + '. Likes: ' + this.response.likes
+          });
+        request.send();
+    });
+  }
 });

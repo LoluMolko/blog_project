@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :authorize_article, only: %i[edit update destroy]
 
   def index
-    @articles = Article.page(params[:page]).per(3).order("id desc")
+    @articles = Article.page(params[:page]).per(5).order("id desc")
     @articles = @articles.where('? = any(tags)', params[:q].downcase) if params[:q].present?
 
     # przeiterowujemy sie przez wszystko w articles
@@ -35,6 +35,19 @@ class ArticlesController < ApplicationController
   def show
     @comment = @article.comments.build(commenter: session[:commenter])
     @like = Like.find_or_initialize_by(article: @article, user: current_user)
+
+    respond_to do |format|
+      format.html do
+        render
+      end
+      format.json do
+        render json: {
+          id: @article.id,
+          likes: @article.likes.count,
+          comments: @article.comments.count
+        }
+      end
+    end
   end
 
   def edit; end
