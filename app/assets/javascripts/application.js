@@ -22,26 +22,26 @@ window.addEventListener("load", function() {
       var comments = document.getElementById("comments");
       if(comments.style.display == "none") {
         comments.style.display = "block";
-        this.innerHTML = 'Hide comments';
+        this.innerHTML = "HIDE comments";
       } else {
         comments.style.display = "none";
-        this.innerHTML = 'Show comments';
+        this.innerHTML = "SHOW comments";
       }
     });
   }
-
-  var summaryElements = document.querySelectorAll('.summary');
-  for (var i = 0; i < summaryElements.length - 1; i++){
-    summaryElements[i].addEventListener('click', function(e){
+  var summaryElements = document.querySelectorAll(".summary");
+  for(i = 0; i < summaryElements.length; i++) {
+    summaryElements[i].addEventListener("click", function(e) {
       e.preventDefault();
-        var request = new XMLHttpRequest();
-        request.open("GET", this.href);
-        request.responseType = 'json';
-        request.addEventListener("load", function () {
-          var summary = document.getElementById('summary-' + this.response.id)
-            summary.innerText = 'Comments: ' + this.response.comments + '. Likes: ' + this.response.likes
-          });
-        request.send();
+      var request = new XMLHttpRequest();
+      request.open("GET", this.href);
+      request.responseType = "json";
+      request.addEventListener("load", function() {
+        var summary = document.getElementById("summary-" + this.response.id)
+        summary
+          .innerText = "Comments: " + this.response.comments + ". Likes: " + this.response.likes;
+      });
+      request.send();
     });
   }
 });
