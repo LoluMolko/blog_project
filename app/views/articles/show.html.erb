@@ -45,7 +45,11 @@
 <%= render 'comments/form' %>
 
 <h2>Comments</h2>
+<a href='#' id='toggle-comments'>Hide comments</a>
+
+<div id='comments'>
 <%= render @article.comments.reload %>
+</div>
 
 <p><%= link_to 'Back to index', articles_path, class: "btn btn-info" %></p>
 
