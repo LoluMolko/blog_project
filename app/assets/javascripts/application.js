@@ -39,7 +39,7 @@ window.addEventListener("load", function() {
       request.addEventListener("load", function() {
         var summary = document.getElementById("summary-" + this.response.id)
         summary
-          .innerText = "Comments: " + this.response.comments + ". Likes: " + this.response.likes;
+          .innerText = "Comments: " + this.response.comments + " / Likes: " + this.response.likes;
       });
       request.send();
     });

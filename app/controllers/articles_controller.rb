@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :authorize_article, only: %i[edit update destroy]
 
   def index
-    @articles = Article.page(params[:page]).per(5).order("id desc")
+    @articles = Article.includes(:author).order(created_at: :desc).page(params[:page]).per(5).order("id desc")
     @articles = @articles.where('? = any(tags)', params[:q].downcase) if params[:q].present?
 
     # przeiterowujemy sie przez wszystko w articles
@@ -43,8 +43,8 @@ class ArticlesController < ApplicationController
       format.json do
         render json: {
           id: @article.id,
-          likes: @article.likes.count,
-          comments: @article.comments.count
+          likes: @article.likes_count,
+          comments: @article.comments_count
         }
       end
     end

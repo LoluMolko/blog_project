@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_26_073828) do
+ActiveRecord::Schema.define(version: 2018_06_10_073722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2018_05_26_073828) do
     t.text "tags", default: [], array: true
     t.bigint "author_id"
     t.string "image"
+    t.integer "likes_count"
+    t.integer "comments_count"
     t.index ["author_id"], name: "index_articles_on_author_id"
   end
 
