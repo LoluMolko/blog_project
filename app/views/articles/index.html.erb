@@ -12,20 +12,19 @@
   <%= f.submit %>
 <% end %>
 
-
 <h2><%= link_to 'Add an article', new_article_path %></h2>
 <h3>Most commented article: <%= link_to @most_commented_article.title, article_path(@most_commented_article.id) %></h3>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Title</th>
-      <th>Text</th>
-      <th>Author</th>
+      <th><%= sort_link(@q, :id) %></th>
+      <th><%= sort_link(@q, :title) %></th>
+      <th><%= sort_link(@q, :text) %></th>
+      <th><%= sort_link(@q, :author) %></th>
       <th>Tags</th>
       <th></th>
-      <th></th>
+      <th><%= sort_link(@q, :comments_count) %></th>
       <th></th>
     </tr>
   </thead>
