@@ -41,7 +41,7 @@
 <% end %>
 
 <p>
-<%= pluralize(@article.likes_count, "person") %> liked this article
+<%= liked_message(@article) %>
 </p>
 
 <%= link_to 'Likes summary', likes_summary_article_path(@article) %>
