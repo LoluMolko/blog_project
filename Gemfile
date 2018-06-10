@@ -40,6 +40,7 @@ gem 'kaminari'
 gem 'pundit'
 gem 'carrierwave'
 gem 'cloudinary'
+gem 'ransack'
 
 group :development, :test do
   # Call 'byebug' to stop execution and get a debugger console

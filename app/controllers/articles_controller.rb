@@ -3,8 +3,12 @@ class ArticlesController < ApplicationController
   before_action :authorize_article, only: %i[edit update destroy]
 
   def index
-    @articles = Article.includes(:author).order(created_at: :desc).page(params[:page]).per(5).order("id desc")
-    @articles = @articles.where('? = any(tags)', params[:q].downcase) if params[:q].present?
+    @q = Article.ransack(params[:q])
+    @articles = @q.result.includes(:author).page(params[:page])
+    @most_commented_article = Article.most_commented.first
+
+    # @articles = @q.resultArticle.includes(:author).order(created_at: :desc).page(params[:page]).per(5).order("id desc")
+    # @articles = @articles.where('? = any(tags)', params[:q].downcase) if params[:q].present?
 
     # przeiterowujemy sie przez wszystko w articles
     # if params[:q].present?

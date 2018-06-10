@@ -1,6 +1,19 @@
 <h1>List of articles</h1>
+
+<%= search_form_for @q do |f| %>
+  <%= f.label :title_cont %>
+  <%= f.search_field :title_cont %>
+
+  <%= f.label :text_cont %>
+  <%= f.search_field :text_cont %>
+
+  <%= f.label :author_id_eq %>
+  <%= f.select :author_id_eq, options_from_collection_for_select(User.all, "id", "email", @q.author_id_eq), include_blank: true %>
+  <%= f.submit %>
+<% end %>
+
+
 <h2><%= link_to 'Add an article', new_article_path %></h2>
-<p><%= render 'tags' %></p>
 <h3>Most commented article: <%= link_to @most_commented_article.title, article_path(@most_commented_article.id) %></h3>
 
 <table class="table">
