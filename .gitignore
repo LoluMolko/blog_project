@@ -26,3 +26,5 @@
 /config/master.key
 config/cloudinary.yml
 public/uploads/
+
+.vscode/
