@@ -1,4 +1,10 @@
 class Article < ApplicationRecord
+  scope :tags_any, ->(args) { where('? = any(tags)', args) }
+
+  def self.ransackable_scopes(auth_object = nil)
+    [:tags_any]
+  end
+
   mount_uploader :image, ImageUploader
 
   validates :title, presence: true, length: { minimum: 5 }

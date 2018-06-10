@@ -7,6 +7,9 @@
   <%= f.label :text_cont %>
   <%= f.search_field :text_cont %>
 
+  <%= f.label :tags_any %>
+  <%= f.search_field :tags_any %>
+
   <%= f.label :author_id_eq %>
   <%= f.select :author_id_eq, options_from_collection_for_select(User.all, "id", "email", @q.author_id_eq), include_blank: true %>
   <%= f.submit %>
