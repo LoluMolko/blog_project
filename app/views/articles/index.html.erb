@@ -1,6 +1,8 @@
 <h1>List of articles</h1>
 <h2><%= link_to 'Add an article', new_article_path %></h2>
 <p><%= render 'tags' %></p>
+<h3>Most commented article: <%= link_to @most_commented_article.title, article_path(@most_commented_article.id) %></h3>
+
 <table class="table">
   <thead>
     <tr>

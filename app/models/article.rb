@@ -23,4 +23,6 @@ class Article < ApplicationRecord
   def sanitize_tags(text)
     text.downcase.split.uniq
   end
+
+  scope :most_commented, -> { order(comments_count: :desc).limit(1) }
 end

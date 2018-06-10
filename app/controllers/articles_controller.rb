@@ -14,6 +14,7 @@ class ArticlesController < ApplicationController
     # else
     # @articles = Article.all
     # end
+    @most_commented_article = Article.most_commented.first
   end
 
   def new
