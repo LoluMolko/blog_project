@@ -1,4 +1,6 @@
 class Article < ApplicationRecord
+  include Flaggable
+  
   scope :tags_any, ->(args) { where('? = any(tags)', args) }
 
   def self.ransackable_scopes(auth_object = nil)
@@ -12,7 +14,6 @@ class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes
   has_many :users, through: :likes
-  # dpn destroy komentarze znikna jesli usuniety artykul
 
   belongs_to :author, class_name: 'User'
 
