@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_10_083050) do
+ActiveRecord::Schema.define(version: 2018_06_23_083911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2018_06_10_083050) do
     t.integer "likes_count"
     t.integer "comments_count"
     t.integer "views_count", default: 0
+    t.string "type"
     t.index ["author_id"], name: "index_articles_on_author_id"
   end
 
@@ -38,6 +39,12 @@ ActiveRecord::Schema.define(version: 2018_06_10_083050) do
     t.index ["article_id"], name: "index_comments_on_article_id"
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "likes", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "article_id", null: false
@@ -46,6 +53,14 @@ ActiveRecord::Schema.define(version: 2018_06_10_083050) do
     t.index ["article_id"], name: "index_likes_on_article_id"
     t.index ["user_id", "article_id"], name: "index_likes_on_user_id_and_article_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "promotions", force: :cascade do |t|
+    t.integer "company_id"
+    t.bigint "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_promotions_on_article_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,4 +84,5 @@ ActiveRecord::Schema.define(version: 2018_06_10_083050) do
   add_foreign_key "comments", "articles"
   add_foreign_key "likes", "articles"
   add_foreign_key "likes", "users"
+  add_foreign_key "promotions", "articles"
 end
